@@ -7,7 +7,9 @@ void halloworld()
 
 int main()
 {
-	Css::Button btn;
+	Ccs::ColorSet();
+	Ccs::StartSet();
+	Ccs::button btn;
 	btn.startb(halloworld, 1, 1, "hi");
 	while(btn.stats != 2);
 	btn.stopb();
