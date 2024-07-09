@@ -171,16 +171,19 @@ namespace Ccs
     {
         printf("\033[38;2;%d;%d;%dm", wr, wg, wb);
     }
+    void ColorSet()
+    {
+    	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+		DWORD dwOutMode;
+		GetConsoleMode(hOut, &dwOutMode);
+		dwOutMode |= 0x0004;
+		SetConsoleMode(hOut, dwOutMode);
+        rgbw_OutOfStruct(255, 255, 255);
+	}
     void StartSet()
     {
-        rgbw_OutOfStruct(255, 255, 255);
         consoleMutex = CreateMutex(NULL, FALSE, NULL);
         srand(time(0));
-        HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-        DWORD dwInMode, dwOutMode;
-        GetConsoleMode(hOut, &dwOutMode);
-        dwOutMode |= 0x0004;
-        SetConsoleMode(hOut, dwOutMode);
         HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
         CONSOLE_CURSOR_INFO CursorInfo;
         GetConsoleCursorInfo(handle, &CursorInfo);
