@@ -31,6 +31,8 @@ namespace Ccs
     void mlock();
     void munlock();
 };
+template<typename... Args>
+void printm(Args... args)
 ```
 
 ---
@@ -82,18 +84,23 @@ while(1)
 ```
 按钮状态，0为未触摸也未按下，1为触摸但是未按下，2为已按下
 
+6.
+```cpp
+template<typename... Args>
+void printm(Args... args)
+```
+输出，可以使用多个不限类型的参数。
+
 ---
 ### 贡献者：
 - [Sqrt404](https://github.com/Sqrt404)
 ---
 ### 注意事项：
-- 使用了这个头文件后在正常的输出前需要使用`Ccs::mlock()`，输出后需要使用`Ccs::munlock()`。例如：
+- 使用了这个头文件后建议使用`printm`以输出，也可以在正常的输出前需要使用`Ccs::mlock()`，输出后需要使用`Ccs::munlock()`。例如：
   ```cpp
   Ccs::button btn;
   btn.startb(NULL, 1, 1, "hi");
-  Ccs::mlock();
-  cout << "Hallo World!" << endl;
-  Ccs::munlock();
+  printm("hello!", sqrt(404));
   ```
 
 - 在主函数开头需要使用`Ccs::ColorSet()`和`Ccs::StartSet()`以初始化按钮所需的函数。
