@@ -204,3 +204,11 @@ namespace Ccs
         ReleaseMutex(consoleMutex);
     }
 }
+template<typename... Args>
+void printm(Args... args)
+{
+	Ccs::mlock();
+	int writem[] = {(cout << args, 0)...};
+	static_cast<void>(writem);
+	Ccs::munlock();
+}
